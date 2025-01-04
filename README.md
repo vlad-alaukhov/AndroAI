@@ -1,2 +1,4 @@
 Домашнее задание Junior I Создание Android приложения с chatGPT. Часть 2
-![image](https://github.com/user-attachments/assets/4839bf5d-8703-4ed3-9c02-b376c630c15c)
+
+![image](https://github.com/user-attachments/assets/be1dc678-a6c1-4c1c-b2e3-4fe199cb650f)
+
