@@ -9,7 +9,6 @@ from dotenv import load_dotenv
 import datetime
 import requests
 import os
-import math
 
 os.environ.clear()
 load_dotenv(".venv/.env")
