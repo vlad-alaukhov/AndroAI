@@ -6,6 +6,7 @@ from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.scrollview import ScrollView
 from kivy.clock import Clock
 from dotenv import load_dotenv
+import datetime
 import requests
 import os
 import math
@@ -47,6 +48,13 @@ BoxLayout:
         MDRaisedButton:
             text: "Отправить"
             on_release: app.send_message()
+            
+    MDLabel:
+        id: status_label
+        size_hint_y: None
+        height: '30dp'  # Фиксированная высота для строки состояния
+        halign: 'center'
+        valign: 'middle'
 '''
 
 system_prompt = '''
@@ -59,6 +67,7 @@ system_prompt = '''
 
 class ChatApp(MDApp):
     def build(self):
+        Clock.schedule_interval(self.update_time, 1)
         return Builder.load_string(KV)
 
     def send_message(self):
@@ -100,6 +109,10 @@ class ChatApp(MDApp):
         scroll_view = self.root.children[1]  # Получаем ScrollView
         scroll_view.scroll_y = 0  # Прокрутка к нижней части ScrollView
 
+    def update_time(self, dt):
+        current_time = datetime.datetime.now().strftime("%H:%M")
+        self.root.ids.status_label.text = f"Текущее время: {current_time}"
+
     def get_response(self, system, message):
         # Формируем данные для POST-запроса
 
@@ -111,7 +124,8 @@ class ChatApp(MDApp):
             "model": "openai/gpt-4o-mini",
             "messages": [
                 {"role": "system", "content": system},
-                {"role": "user", "content": message}
+                {"role": "user", "content": message},
+
             ]
         }
 
