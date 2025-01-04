@@ -64,7 +64,6 @@ system_prompt = '''
     Оценочные выражения дополнить фактами или цифрами, иначе исключить.
 '''
 
-
 class ChatApp(MDApp):
     def build(self):
         Clock.schedule_interval(self.update_time, 1)
