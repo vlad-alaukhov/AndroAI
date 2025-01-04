@@ -108,7 +108,7 @@ class ChatApp(MDApp):
             "Content-Type": "application/json"
         }
         payload = {
-            "model": "openai/gpt4-o-mini",
+            "model": "openai/gpt-4o-mini",
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": message}
@@ -117,7 +117,7 @@ class ChatApp(MDApp):
 
         try:
             # Отправляем POST-запрос к модели
-            response = requests.post("https://api.vsegpt.ru/v1/chat/completions", headers=headers, json=payload)
+            response = requests.post("https://api.vsegpt.ru:6010/v1/chat/completions", headers=headers, json=payload)
             response.raise_for_status()  # Проверка на наличие ошибок в запросе
 
             # Получаем ответ от модели
